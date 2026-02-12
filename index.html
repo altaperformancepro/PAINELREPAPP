@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAINEL REP - Alta Performance 2026</title>
     
-    <!-- PWA Meta Tags -->
+    <meta property="og:title" content="PAINEL REP - Alta Performance 2026">
+    <meta property="og:description" content="Acesse Lista de Preços, Vídeos, Pedidos PDV e Simuladores. Painel exclusivo de alta performance.">
+    <meta property="og:image" content="https://altaperformancepro.github.io/image_5dd531.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    
     <meta name="theme-color" content="#005A9C">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,7 +20,6 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icone-180.png">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -376,7 +382,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header class="header">
             <div class="logo-container">
                 <img src="logo.png" alt="Logo Painel REP" class="logo">
@@ -387,9 +392,7 @@
             </div>
         </header>
 
-        <!-- Cards Grid -->
         <main class="cards-grid">
-            <!-- Card 1: Lista de Preços -->
             <article class="card">
                 <div class="card-icon">🏷️</div>
                 <h2 class="card-title">Lista de Preços Mantecorp</h2>
@@ -402,7 +405,6 @@
                 </a>
             </article>
 
-            <!-- Card 2: Vídeo Rinosoro -->
             <article class="card">
                 <div class="card-icon">🎥</div>
                 <h2 class="card-title">Lavagem Nasal Rinosoro</h2>
@@ -415,7 +417,6 @@
                 </a>
             </article>
 
-            <!-- Card 3: Pedido PDV -->
             <article class="card">
                 <div class="card-icon">🛒</div>
                 <h2 class="card-title">Pedido PDV</h2>
@@ -428,7 +429,6 @@
                 </a>
             </article>
 
-            <!-- Card 4: Simulador Premiação -->
             <article class="card">
                 <div class="card-icon">🏆</div>
                 <h2 class="card-title">Simulador Premiação</h2>
@@ -441,7 +441,6 @@
                 </a>
             </article>
 
-            <!-- Card 5: Links REP (NOVO) -->
             <article class="card">
                 <div class="card-icon">🔗</div>
                 <h2 class="card-title">Links REP</h2>
@@ -454,7 +453,6 @@
                 </a>
             </article>
 
-            <!-- Card 6: Estratégia de Marketing (NOVO) -->
             <article class="card">
                 <div class="card-icon">📊</div>
                 <h2 class="card-title">Estratégia de Marketing</h2>
@@ -467,7 +465,6 @@
                 </a>
             </article>
 
-            <!-- Card 7: Manual MKT 2026 (NOVO) -->
             <article class="card">
                 <div class="card-icon">📖</div>
                 <h2 class="card-title">Manual MKT 2026</h2>
@@ -482,7 +479,6 @@
         </main>
     </div>
 
-    <!-- Service Worker Registration -->
     <script>
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
