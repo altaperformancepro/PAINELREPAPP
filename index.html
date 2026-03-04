@@ -39,24 +39,42 @@
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            perspective: 1000px; /* Necessário para efeito 3D */
+            perspective: 1000px;
         }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px 20px 40px 20px; }
+
+        /* Logo com animação suave */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .logo-img {
+           max-width: 100px; /* Reduzido de 220px para 180px para diminuir o tamanho */
+              height: auto;
+              filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+        }
 
         .theme-selector { position: fixed; top: 20px; right: 20px; background: white; padding: 10px; border-radius: 50px; display: flex; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; }
         .theme-dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #ddd; }
         .dot-default { background: #005A9C; }
         .dot-dark { background: #1a1c2c; }
 
-        .header { text-align: center; padding: 20px 0 50px 0; }
-        .main-title { font-size: 3.5rem; color: var(--primary-blue); font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .header { text-align: center; padding: 0 0 50px 0; }
+        .main-title { font-size: 3.5rem; color: var(--primary-blue); font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
 
-        /* GRID PRINCIPAL */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            gap: 25px;
         }
 
         .card {
@@ -71,17 +89,13 @@
             box-shadow: var(--shadow-3d);
             border: 1px solid rgba(255,255,255,0.4);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Efeito 3D ao passar o mouse */
         .card:hover {
-            transform: translateY(-12px) rotateX(5deg);
+            transform: translateY(-12px) rotateX(4deg) rotateY(2deg);
             box-shadow: var(--shadow-hover);
         }
 
-        /* Efeito nos Ícones */
         .card-icon { 
             font-size: 4rem; 
             margin-bottom: 15px; 
@@ -89,20 +103,17 @@
             filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
         }
         
-        .card:hover .card-icon {
-            transform: scale(1.2) translateZ(20px);
-        }
+        .card:hover .card-icon { transform: scale(1.25) translateZ(30px); }
 
         .card-title { 
             color: var(--card-text); 
-            font-size: 1rem; 
+            font-size: 0.95rem; 
             text-transform: uppercase; 
             font-weight: 800; 
             margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
 
-        /* Botões Estilo 3D */
         .btn { 
             padding: 15px; 
             border-radius: 14px; 
@@ -119,11 +130,10 @@
         
         .btn:hover { 
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
             filter: brightness(1.2);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
         }
 
-        /* CARD DE DOWNLOAD ESPECIAL */
         .card-download-full {
             grid-column: span 4;
             margin-top: 30px;
@@ -135,19 +145,16 @@
 
         .dl-container { background: var(--dl-bg); border-radius: 18px; padding: 10px; margin-bottom: 15px; text-align: left; }
         .dl-item { display: flex; align-items: center; padding: 12px 15px; color: var(--primary-blue); text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: 0.2s; }
-        .dl-item:hover { background: rgba(0,0,0,0.05); transform: translateX(5px); }
+        .dl-item:hover { background: rgba(0,0,0,0.08); transform: translateX(8px); }
         
         .blink-alert { 
             color: var(--accent-orange); 
             font-size: 0.85rem; 
             font-weight: 900; 
-            margin-top: 10px;
             animation: blinker 1.2s linear infinite; 
-            text-shadow: 0 0 10px rgba(255,102,0,0.2);
         }
-        @keyframes blinker { 50% { opacity: 0.2; } }
+        @keyframes blinker { 50% { opacity: 0.3; } }
 
-        /* Responsividade */
         @media (max-width: 1100px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } .card-download-full { grid-column: span 2; } }
         @media (max-width: 600px) { .cards-grid { grid-template-columns: 1fr; } .card-download-full { grid-column: span 1; } }
 
@@ -161,13 +168,16 @@
     </div>
 
     <div class="container">
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/altaperformancepro/PAINELREPAPP/7daffc348562bce5e0a9409e17a5da3c70a030b5/logo.png" alt="Logo Alta Performance" class="logo-img">
+        </div>
+
         <header class="header">
             <h1 class="main-title">PAINEL REP</h1>
             <p style="color: var(--accent-orange); font-weight: 800; letter-spacing: 4px; font-size: 1.2rem;">ALTA PERFORMANCE 2026</p>
         </header>
 
         <main class="cards-grid">
-            
             <article class="card">
                 <div><div class="card-icon">💊</div><h2 class="card-title">MEMENTO PRONTO ATENDIMENTO</h2></div>
                 <a href="https://altaperformancepro.github.io/memento/" target="_blank" class="btn btn-primary">Memento →</a>
@@ -222,7 +232,6 @@
                 </div>
                 <div class="blink-alert">⚠️ CLIQUE ACIMA PARA BAIXAR</div>
             </article>
-
         </main>
     </div>
 
