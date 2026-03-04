@@ -1,238 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mantecorp Farmasa - ACELERA PRO 3 (DETALHADO)</title>
-<style>
-    :root {
-        --mantecorp-orange: #cf6a42; 
-        --mantecorp-gradient: linear-gradient(135deg, #cf6a42 0%, #a64420 100%);
-        --title-blue: #003366;
-        --color-aines: #d35400;
-        --color-dor-febre: #c0392b;
-        --color-alergia: #8e44ad;
-        --color-resp: #2980b9;
-        --color-sono: #2c3e50;
-        --bg-page: #f4f7f6;
-        --white: #ffffff;
-    }
-
-    body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg-page); color: #333; line-height: 1.5; }
-    .main-header { background: var(--mantecorp-gradient); color: var(--white); padding: 40px 20px; text-align: center; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    .dashboard-container { max-width: 1100px; margin: -20px auto 50px auto; padding: 0 15px; }
-
-    .product-card { background: var(--white); border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); margin-bottom: 30px; overflow: hidden; border-top: 6px solid #ccc; }
-    .theme-aines { border-color: var(--color-aines); }
-    .theme-dor { border-color: var(--color-dor-febre); }
-    .theme-alergia { border-color: var(--color-alergia); }
-    .theme-resp { border-color: var(--color-resp); }
-    .theme-sono { border-color: var(--color-sono); }
-
-    .card-header { padding: 20px 25px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-    .card-header h2 { margin: 0; color: var(--title-blue); font-size: 1.4rem; text-transform: uppercase; }
-    .badge-equipe { background: #f0f2f5; padding: 5px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: #555; border: 1px solid #ddd; }
-
-    .card-body { padding: 25px; }
-    .section-title { font-size: 1rem; font-weight: 800; text-transform: uppercase; margin: 20px 0 10px 0; color: var(--title-blue); border-bottom: 2px solid #eee; padding-bottom: 5px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAINEL REP - Alta Performance 2026</title>
     
-    .highlight-box { background: #fffde7; padding: 15px; border-radius: 8px; border-left: 5px solid #fbc02d; margin: 15px 0; font-size: 0.9rem; }
-    .target-box { background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #2196f3; margin: 15px 0; font-size: 0.9rem; }
-    .alert-box { background: #fbe9e7; padding: 15px; border-radius: 8px; border-left: 5px solid #ff5722; margin: 15px 0; font-size: 0.9rem; }
-
-    ul { list-style: none; padding: 0; margin: 0; }
-    li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; }
-    li::before { content: "•"; position: absolute; left: 0; color: var(--mantecorp-orange); font-weight: bold; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    .materials-footer { background: #f9f9f9; padding: 15px 25px; border-top: 1px solid #eee; font-size: 0.85rem; color: #666; }
-    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px; }
-    .stat-item { background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #eee; }
-    .stat-val { display: block; font-size: 1.2rem; font-weight: bold; color: var(--mantecorp-orange); }
-    .stat-label { font-size: 0.7rem; text-transform: uppercase; color: #777; }
-</style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #005A9C;
+            --primary-blue-light: #006BCF;
+            --accent-orange: #FF6600;
+            --accent-orange-light: #FF8533;
+            --bg-gradient-start: #E8F4F8;
+            --bg-gradient-end: #D4E8F0;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-text: #1a1a1a;
+            --shadow-md: 0 4px 16px rgba(0, 90, 156, 0.12);
+            --shadow-xl: 0 20px 48px rgba(0, 90, 156, 0.25);
+        }
+
+        body.theme-dark {
+            --bg-gradient-start: #1a1c2c;
+            --bg-gradient-end: #0f101a;
+            --card-bg: rgba(30, 33, 50, 0.95);
+            --card-text: #ffffff;
+            --primary-blue: #4e54c8;
+            --primary-blue-light: #8f94fb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header { text-align: center; padding: 40px 0; }
+        .main-title { 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            color: var(--primary-blue);
+            font-weight: 900;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* EFEITO DE HOVER NOS CARDS */
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px; /* Tamanho original padrão */
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-icon { font-size: 3.5rem; margin-bottom: 15px; }
+        .card-title { 
+            color: var(--card-text); 
+            font-size: 1.1rem; 
+            text-transform: uppercase; 
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        /* CAIXA DE DOWNLOADS INTERNA */
+        .download-box {
+            background: rgba(0, 90, 156, 0.05);
+            border-radius: 15px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .link-download {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 8px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .link-download:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 8px;
+        }
+
+        /* ANIMAÇÃO PISCANTE DO TEXTO */
+        .blink-text {
+            font-size: 0.9rem;
+            font-weight: 900;
+            margin-top: 15px;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; transform: scale(1.1); }
+        }
+
+        .btn {
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .btn-primary { background: var(--primary-blue); }
+        .btn-accent { background: var(--accent-orange); }
+        .btn:hover { filter: brightness(1.1); }
+
+    </style>
 </head>
 <body>
 
-<div class="main-header">
-    <h1 style="margin:0;">MANTECORP FARMASA</h1>
-    <p style="margin:5px 0 0; opacity: 0.9; font-weight: bold;">DIRETRIZES ESTRATÉGICAS - CICLO 03 / 2026</p>
-</div>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">PAINEL REP</h1>
+            <p style="color: var(--accent-orange); font-weight: bold; letter-spacing: 2px;">ALTA PERFORMANCE 2026</p>
+        </header>
 
-<div class="dashboard-container">
-
-    <div class="product-card theme-aines">
-        <div class="card-header">
-            <h2>AINES</h2>
-            <span class="badge-equipe">EQUIPE: SINERGIA</span>
-        </div>
-        <div class="card-body">
-            <div class="alert-box">
-                <strong>DIAGNÓSTICO:</strong> Retração de -9% (fev/26 proj vs PA). Foco em acelerar o fechamento do trimestre para recuperação.
-            </div>
+        <main class="cards-grid">
             
-            <h3 class="section-title">MAXSULID (Aniversário 20 Anos)</h3>
-            <ul>
-                <li>Relembrar a história: pioneirismo na associação da <strong>Nimesulida com Betaciclodextrina</strong>.</li>
-                <li><strong>Ferramenta:</strong> Uso obrigatório do vídeo sobre mecanismo de ação na propaganda.</li>
-            </ul>
+            <article class="card">
+                <div>
+                    <div class="card-icon">💊</div> 
+                    <h2 class="card-title">MEMENTO PRONTO ATENDIMENTO</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/memento/" target="_blank" class="btn btn-primary">Memento →</a>
+            </article>
 
-            <h3 class="section-title">ECOXE vs ARCOXIA</h3>
-            <div class="stat-grid">
-                <div class="stat-item"><span class="stat-val">+0,3p.p.</span><span class="stat-label">Market Share Capturado (Fev)</span></div>
-                <div class="stat-item"><span class="stat-val">50%</span><span class="stat-label">Meta de Share até fim do ano</span></div>
-            </div>
-            <ul>
-                <li><strong>Tática:</strong> Uso estratégico da planilha de mapeamento de prescritores de Arcoxia.</li>
-                <li><strong>Investimento:</strong> Focar verba em <strong>Projeto Residentes</strong> e <strong>Dia de Produto</strong>.</li>
-            </ul>
+            <article class="card">
+                <div>
+                    <div class="card-icon">🏷️</div>
+                    <h2 class="card-title">LISTA DE PREÇOS MANTECORP</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" class="btn btn-primary">Acessar Lista →</a>
+            </article>
 
-            <h3 class="section-title">KELAC</h3>
-            <ul>
-                <li><strong>Projeto Odonto:</strong> Aceleração máxima. "Vocês são os donos da Odontologia".</li>
-            </ul>
-        </div>
-        <div class="materials-footer">
-            <strong>Suporte:</strong> Verba de projetos como ferramenta de aceleração para fechamento do Tri.
-        </div>
+            <article class="card">
+                <div>
+                    <div class="card-icon">🎥</div>
+                    <h2 class="card-title">LAVAGEM NASAL RINOSORO</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/videorinosorofinal/" target="_blank" class="btn btn-accent">Ver Vídeo →</a>
+            </article>
+
+            <article class="card">
+                <div>
+                    <div class="card-icon">🛒</div>
+                    <h2 class="card-title">PEDIDO PDV</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" class="btn btn-primary">Fazer Pedido →</a>
+            </article>
+
+            <article class="card">
+                <div>
+                    <div class="card-icon">🏆</div>
+                    <h2 class="card-title">SIMULADOR PREMIAÇÃO</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" class="btn btn-primary">Acessar Simulador →</a>
+            </article>
+
+            <article class="card">
+                <div>
+                    <div class="card-icon">🔗</div>
+                    <h2 class="card-title">LINKS REP</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/LINKSREP/" target="_blank" class="btn btn-accent">Ver Links →</a>
+            </article>
+
+            <article class="card">
+                <div>
+                    <div class="card-icon">📊</div>
+                    <h2 class="card-title">ACELERA PRO CICLO 3</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/ESTRATEGIADEMARKETINK/" target="_blank" class="btn btn-primary">Ver Estratégia →</a>
+            </article>
+
+            <article class="card">
+                <div>
+                    <div class="card-icon">📖</div>
+                    <h2 class="card-title">MANUAL MKT 2026</h2>
+                </div>
+                <a href="https://altaperformancepro.github.io/MANUAL2026/" target="_blank" class="btn btn-accent">Abrir Manual →</a>
+            </article>
+
+            <article class="card">
+                <div>
+                    <div class="card-icon">📂</div>
+                    <h2 class="card-title">MATERIAIS ESTRATÉGICOS</h2>
+                    <div class="download-box">
+                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/MARCAS%20EM%20LOGOS.jpeg" download class="link-download">📥 Marcas em Logos</a>
+                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/MEMENTO%20PROTNO%20ATENDIMENTO.pdf" download class="link-download">📥 Memento Pronto Atend.</a>
+                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/PANFLETO%20PLANT%C3%83O.pdf" download class="link-download">📥 Panfleto Plantão</a>
+                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/PANLETO%20AINES.pdf" download class="link-download">📥 Panfleto Aines</a>
+                    </div>
+                </div>
+                <p class="blink-text">⚠️ Clique acima para baixar</p>
+            </article>
+
+        </main>
     </div>
 
-    <div class="product-card theme-dor">
-        <div class="card-header">
-            <h2>DIPROSPAN, LISADOR E NOVOTRAM</h2>
-            <span class="badge-equipe">EQUIPE: DINAMO E SINERGIA</span>
-        </div>
-        <div class="card-body">
-            <h3 class="section-title">DIPROSPAN: Intesidade de Execução</h3>
-            <div class="stat-grid">
-                <div class="stat-item"><span class="stat-val">83,8%</span><span class="stat-label">Projeção Cobertura Cota</span></div>
-                <div class="stat-item"><span class="stat-val">+4,9%</span><span class="stat-label">Crescimento vs Ano Ant.</span></div>
-            </div>
-            <ul>
-                <li><strong>Estratégia Hypak:</strong> Apresentação exclusiva. Dinamo recebe unidade original para demonstração física. <strong>"Hypak precisa ser mostrado, não apenas falado"</strong>.</li>
-                <li><strong>Segmentação:</strong> Acelerar 1 ampola (canal indireto/giro) e 6 ampolas (clínicas de viscosuplementação).</li>
-                <li><strong>Diferenciais:</strong> Tecnologia de microcristais, polissorbato 80 e qualidade de produto referência.</li>
-            </ul>
-
-            <h3 class="section-title">LISADOR (Dengue e Mevo)</h3>
-            <ul>
-                <li><strong>Regiões Prioritárias:</strong> SP, GO (alerta casos graves), MG, PR, TO e RS.</li>
-                <li><strong>Mevo:</strong> Crescimento de 1.000 para 12 mil médicos. Meta: <strong>Converter molécula em marca</strong>.</li>
-                <li><strong>Lisador Muscular:</strong> Lançamento foco total. Diferenciais: Sem AINE, Sem Sono, Potência Analgésica.</li>
-            </ul>
-
-            <h3 class="section-title">NOVOTRAM</h3>
-            <ul>
-                <li>Mapear e trabalhar <strong>5 médicos potenciais</strong> prescritores de tramadol por representante.</li>
-            </ul>
-        </div>
-        <div class="materials-footer">
-            <strong>Materiais:</strong> VA atualizado, Vídeo médico, Lâmina Digital, Diprospan no Combo RX (12% no Trade).
-        </div>
-    </div>
-
-    <div class="product-card theme-dor">
-        <div class="card-header">
-            <h2>ALIVIUM E PRATIUM</h2>
-            <span class="badge-equipe">EQUIPE: DVS</span>
-        </div>
-        <div class="card-body">
-            <div class="highlight-box">
-                <strong>CONTEXTO:</strong> Pós-Carnaval e volta às aulas com aumento de Influenza e viroses. Dengue sem crescimento exponencial no momento.
-            </div>
-            
-            <h3 class="section-title">ALIVIUM 100 E GC</h3>
-            <ul>
-                <li><strong>Posicionamento 100mg:</strong> Marca nº1 do médico. Primeiro analgésico de escolha em dor/febre infantil.</li>
-                <li><strong>Alivium GC:</strong> Território de inflamações (entorses, garganta, sinusites). Reduzir risco de troca no PDV.</li>
-                <li><strong>Ortopedia Infantil:</strong> Mapear clínicas pediátricas para explorar este "Oceano Azul".</li>
-            </ul>
-
-            <h3 class="section-title">PRATIUM</h3>
-            <ul>
-                <li>Ajuste de foco devido menor pressão de Dengue. Priorizar <strong>clínicas de vacinação</strong> (segurança desde o 1º dia de vida).</li>
-            </ul>
-        </div>
-        <div class="materials-footer">
-            <strong>Ações:</strong> Material comparativo de moléculas, Portfólio Infantil Digital, AGs Alivium 100/GC/Pratium.
-        </div>
-    </div>
-
-    <div class="product-card theme-alergia">
-        <div class="card-header">
-            <h2>ALERGIA (Alektos e Amome)</h2>
-            <span class="badge-equipe">EQUIPE: VITA E SINERGIA</span>
-        </div>
-        <div class="card-body">
-            <h3 class="section-title">ALEKTOS CPR, DERM E PED</h3>
-            <ul>
-                <li><strong>CPR 20cp:</strong> Foco nesta apresentação para blindar receituário e evitar genérico no PDV.</li>
-                <li><strong>Alektos Derm:</strong> <strong>Experimentação obrigatória</strong> na visita. Hidratação como base para diversas doenças de pele.</li>
-                <li><strong>Alektos Ped:</strong> Mercado infantil 90% inexplorado. Dash enviado com médicos não prescritores para ataque.</li>
-            </ul>
-
-            <h3 class="section-title">AMOME (Caminho Livre)</h3>
-            <div class="alert-box" style="background:#e8f5e9; border-color:#4caf50;">
-                <strong>OPORTUNIDADE:</strong> Avamys e Nasonex estão sem força de vendas. BI enviado para conquistar os prescritores órfãos.
-            </div>
-        </div>
-        <div class="materials-footer">
-            <strong>Mensagem:</strong> Alektos (molécula moderna/preço acessível) e Amome (mometasona que combina eficácia e segurança).
-        </div>
-    </div>
-
-    <div class="product-card theme-resp">
-        <div class="card-header">
-            <h2>FRANQUIA RESPIRATÓRIA</h2>
-            <span class="badge-equipe">EQUIPE: DINAMO, VITA E SINERGIA</span>
-        </div>
-        <div class="card-body">
-            <h3 class="section-title">RINOSORO (JET E XT)</h3>
-            <ul>
-                <li><strong>Única marca:</strong> Portfólio completo da prevenção ao tratamento.</li>
-                <li><strong>JET XT:</strong> Ação antibacteriana, prevenção de IVAS, pós-operatório. Seguro para bebês e diabéticos.</li>
-                <li><strong>Diferenciais:</strong> Aplicação 360°, jato suave e bico anatômico.</li>
-            </ul>
-
-            <h3 class="section-title">DESCON (Foco de Crescimento)</h3>
-            <ul>
-                <li>Ataque ao líder <strong>Decongex</strong>. Foco em Pronto Atendimento e versão comprimidos.</li>
-                <li><strong>Ação Conjugada:</strong> Rinosoro (tópico) + Descon (sistêmico) para melhor respiração do paciente.</li>
-            </ul>
-
-            <h3 class="section-title">PREDSIM</h3>
-            <ul>
-                <li><strong>Foco:</strong> Pediatras e Otorrinos. Blindar contra genéricos e Predni (Eurofarma).</li>
-                <li>Buscar médicos mixadores (que prescrevem Prednisona/Dexa/Beta).</li>
-            </ul>
-        </div>
-        <div class="materials-footer">
-            <strong>Materiais:</strong> Amostras SIC XT, Bloco de Mesa Decon, Amostras Predsim (10/20/40mg e Solução).
-        </div>
-    </div>
-
-    <div class="product-card theme-sono">
-        <div class="card-header">
-            <h2>MELATONUM</h2>
-            <span class="badge-equipe">EQUIPE: TODAS</span>
-        </div>
-        <div class="card-body">
-            <div class="stat-grid">
-                <div class="stat-item"><span class="stat-val">+16%</span><span class="stat-label">Crescimento Família</span></div>
-                <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Atingimento Cota</span></div>
-            </div>
-            <h3 class="section-title">MELATONUM MAX E COMPLETE</h3>
-            <ul>
-                <li><strong>Melatonum Max:</strong> 1 gota = 0,21mg. Recomendado para doses maiores ou preferência por líquido.</li>
-                <li><strong>Melatonum Complete (4 em 1):</strong> Melatonina, Triptofano, Magnésio e B6. Foco em pacientes com humor irregular.</li>
-                <li><strong>Amostras:</strong> Volume aumentado para novos médicos (blindagem do mercado onde somos os únicos a visitar).</li>
-            </ul>
-        </div>
-        <div class="materials-footer">
-            <strong>Diretriz:</strong> Todo médico tem paciente que se beneficia, independente da especialidade.
-        </div>
-    </div>
-
-</div>
-
+    <script>
+        // Script para manter o tema se necessário
+        function setTheme(themeName) {
+            document.body.className = themeName;
+            localStorage.setItem('preferred-theme', themeName);
+        }
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('preferred-theme');
+            if(savedTheme) setTheme(savedTheme);
+        }
+    </script>
 </body>
 </html>
