@@ -10,23 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary-blue: #005A9C;
-            --primary-blue-light: #006BCF;
             --accent-orange: #FF6600;
-            --accent-orange-light: #FF8533;
             --bg-gradient-start: #E8F4F8;
             --bg-gradient-end: #D4E8F0;
             --card-bg: rgba(255, 255, 255, 0.95);
             --card-text: #1a1a1a;
-            --shadow-md: 0 4px 16px rgba(0, 90, 156, 0.12);
-            --shadow-xl: 0 20px 48px rgba(0, 90, 156, 0.25);
+            --shadow-3d: 0 20px 40px rgba(0, 90, 156, 0.15);
+            --shadow-hover: 0 30px 60px rgba(0, 90, 156, 0.25);
+            --dl-bg: #f1f6f9;
         }
 
         body.theme-dark {
@@ -35,7 +30,8 @@
             --card-bg: rgba(30, 33, 50, 0.95);
             --card-text: #ffffff;
             --primary-blue: #4e54c8;
-            --primary-blue-light: #8f94fb;
+            --dl-bg: #252a41;
+            --shadow-3d: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         body {
@@ -43,29 +39,26 @@
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            transition: all 0.5s ease;
+            perspective: 1000px; /* Necessário para efeito 3D */
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
 
-        .header { text-align: center; padding: 40px 0; }
-        .main-title { 
-            font-size: clamp(2rem, 5vw, 3.5rem); 
-            color: var(--primary-blue);
-            font-weight: 900;
-        }
+        .theme-selector { position: fixed; top: 20px; right: 20px; background: white; padding: 10px; border-radius: 50px; display: flex; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; }
+        .theme-dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #ddd; }
+        .dot-default { background: #005A9C; }
+        .dot-dark { background: #1a1c2c; }
 
+        .header { text-align: center; padding: 20px 0 50px 0; }
+        .main-title { font-size: 3.5rem; color: var(--primary-blue); font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+
+        /* GRID PRINCIPAL */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
         }
 
-        /* EFEITO DE HOVER NOS CARDS */
         .card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -74,175 +67,166 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 320px; /* Tamanho original padrão */
-            box-shadow: var(--shadow-md);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(255,255,255,0.3);
+            min-height: 300px;
+            box-shadow: var(--shadow-3d);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Efeito 3D ao passar o mouse */
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-12px) rotateX(5deg);
+            box-shadow: var(--shadow-hover);
         }
 
-        .card-icon { font-size: 3.5rem; margin-bottom: 15px; }
+        /* Efeito nos Ícones */
+        .card-icon { 
+            font-size: 4rem; 
+            margin-bottom: 15px; 
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.2) translateZ(20px);
+        }
+
         .card-title { 
             color: var(--card-text); 
-            font-size: 1.1rem; 
+            font-size: 1rem; 
             text-transform: uppercase; 
+            font-weight: 800; 
             margin-bottom: 20px;
-            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
-        /* CAIXA DE DOWNLOADS INTERNA */
-        .download-box {
-            background: rgba(0, 90, 156, 0.05);
-            border-radius: 15px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .link-download {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 8px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: 0.2s;
-        }
-
-        .link-download:hover {
-            background: var(--primary-blue);
-            color: white;
-            border-radius: 8px;
-        }
-
-        /* ANIMAÇÃO PISCANTE DO TEXTO */
-        .blink-text {
-            font-size: 0.9rem;
-            font-weight: 900;
-            margin-top: 15px;
-            color: var(--accent-orange);
-            text-transform: uppercase;
-            animation: blinker 1s linear infinite;
-        }
-
-        @keyframes blinker {
-            50% { opacity: 0; transform: scale(1.1); }
-        }
-
-        .btn {
-            padding: 15px;
-            border-radius: 12px;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
+        /* Botões Estilo 3D */
+        .btn { 
+            padding: 15px; 
+            border-radius: 14px; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: 0.3s; 
             display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary { background: linear-gradient(145deg, var(--primary-blue), #004070); }
+        .btn-accent { background: linear-gradient(145deg, var(--accent-orange), #d45500); }
+        
+        .btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            filter: brightness(1.2);
         }
 
-        .btn-primary { background: var(--primary-blue); }
-        .btn-accent { background: var(--accent-orange); }
-        .btn:hover { filter: brightness(1.1); }
+        /* CARD DE DOWNLOAD ESPECIAL */
+        .card-download-full {
+            grid-column: span 4;
+            margin-top: 30px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .dl-container { background: var(--dl-bg); border-radius: 18px; padding: 10px; margin-bottom: 15px; text-align: left; }
+        .dl-item { display: flex; align-items: center; padding: 12px 15px; color: var(--primary-blue); text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: 0.2s; }
+        .dl-item:hover { background: rgba(0,0,0,0.05); transform: translateX(5px); }
+        
+        .blink-alert { 
+            color: var(--accent-orange); 
+            font-size: 0.85rem; 
+            font-weight: 900; 
+            margin-top: 10px;
+            animation: blinker 1.2s linear infinite; 
+            text-shadow: 0 0 10px rgba(255,102,0,0.2);
+        }
+        @keyframes blinker { 50% { opacity: 0.2; } }
+
+        /* Responsividade */
+        @media (max-width: 1100px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } .card-download-full { grid-column: span 2; } }
+        @media (max-width: 600px) { .cards-grid { grid-template-columns: 1fr; } .card-download-full { grid-column: span 1; } }
 
     </style>
 </head>
 <body>
 
+    <div class="theme-selector">
+        <div class="theme-dot dot-default" onclick="setTheme('')"></div>
+        <div class="theme-dot dot-dark" onclick="setTheme('theme-dark')"></div>
+    </div>
+
     <div class="container">
         <header class="header">
             <h1 class="main-title">PAINEL REP</h1>
-            <p style="color: var(--accent-orange); font-weight: bold; letter-spacing: 2px;">ALTA PERFORMANCE 2026</p>
+            <p style="color: var(--accent-orange); font-weight: 800; letter-spacing: 4px; font-size: 1.2rem;">ALTA PERFORMANCE 2026</p>
         </header>
 
         <main class="cards-grid">
             
             <article class="card">
-                <div>
-                    <div class="card-icon">💊</div> 
-                    <h2 class="card-title">MEMENTO PRONTO ATENDIMENTO</h2>
-                </div>
+                <div><div class="card-icon">💊</div><h2 class="card-title">MEMENTO PRONTO ATENDIMENTO</h2></div>
                 <a href="https://altaperformancepro.github.io/memento/" target="_blank" class="btn btn-primary">Memento →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">🏷️</div>
-                    <h2 class="card-title">LISTA DE PREÇOS MANTECORP</h2>
-                </div>
+                <div><div class="card-icon">🏷️</div><h2 class="card-title">LISTA DE PREÇOS MANTECORP</h2></div>
                 <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" class="btn btn-primary">Acessar Lista →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">🎥</div>
-                    <h2 class="card-title">LAVAGEM NASAL RINOSORO</h2>
-                </div>
+                <div><div class="card-icon">🎥</div><h2 class="card-title">LAVAGEM NASAL RINOSORO</h2></div>
                 <a href="https://altaperformancepro.github.io/videorinosorofinal/" target="_blank" class="btn btn-accent">Ver Vídeo →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">🛒</div>
-                    <h2 class="card-title">PEDIDO PDV</h2>
-                </div>
+                <div><div class="card-icon">🛒</div><h2 class="card-title">PEDIDO PDV</h2></div>
                 <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" class="btn btn-primary">Fazer Pedido →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">🏆</div>
-                    <h2 class="card-title">SIMULADOR PREMIAÇÃO</h2>
-                </div>
+                <div><div class="card-icon">🏆</div><h2 class="card-title">SIMULADOR PREMIAÇÃO</h2></div>
                 <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" class="btn btn-primary">Acessar Simulador →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">🔗</div>
-                    <h2 class="card-title">LINKS REP</h2>
-                </div>
+                <div><div class="card-icon">🔗</div><h2 class="card-title">LINKS REP</h2></div>
                 <a href="https://altaperformancepro.github.io/LINKSREP/" target="_blank" class="btn btn-accent">Ver Links →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">📊</div>
-                    <h2 class="card-title">ACELERA PRO CICLO 3</h2>
-                </div>
+                <div><div class="card-icon">📊</div><h2 class="card-title">ESTRATÉGIA DE MARKETING</h2></div>
                 <a href="https://altaperformancepro.github.io/ESTRATEGIADEMARKETINK/" target="_blank" class="btn btn-primary">Ver Estratégia →</a>
             </article>
 
             <article class="card">
-                <div>
-                    <div class="card-icon">📖</div>
-                    <h2 class="card-title">MANUAL MKT 2026</h2>
-                </div>
+                <div><div class="card-icon">📖</div><h2 class="card-title">MANUAL MKT 2026</h2></div>
                 <a href="https://altaperformancepro.github.io/MANUAL2026/" target="_blank" class="btn btn-accent">Abrir Manual →</a>
             </article>
 
-            <article class="card">
-                <div>
-                    <div class="card-icon">📂</div>
-                    <h2 class="card-title">MATERIAIS ESTRATÉGICOS</h2>
-                    <div class="download-box">
-                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/MARCAS%20EM%20LOGOS.jpeg" download class="link-download">📥 Marcas em Logos</a>
-                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/MEMENTO%20PROTNO%20ATENDIMENTO.pdf" download class="link-download">📥 Memento Pronto Atend.</a>
-                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/PANFLETO%20PLANT%C3%83O.pdf" download class="link-download">📥 Panfleto Plantão</a>
-                        <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/PANLETO%20AINES.pdf" download class="link-download">📥 Panfleto Aines</a>
-                    </div>
+            <article class="card card-download-full">
+                <div class="card-icon">📁</div>
+                <h2 class="card-title">Materiais Estratégicos</h2>
+                <div class="dl-container">
+                    <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/MARCAS%20EM%20LOGOS.jpeg" download class="dl-item">📥 Marcas em Logos</a>
+                    <hr style="opacity: 0.1">
+                    <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/MEMENTO%20PROTNO%20ATENDIMENTO.pdf" download class="dl-item">📥 Memento Pronto Atend.</a>
+                    <hr style="opacity: 0.1">
+                    <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/PANFLETO%20PLANT%C3%83O.pdf" download class="dl-item">📥 Panfleto Plantão</a>
+                    <hr style="opacity: 0.1">
+                    <a href="https://github.com/altaperformancepro/DOWNLOADSPAINELREP/raw/main/PANLETO%20AINES.pdf" download class="dl-item">📥 Panfleto Aines</a>
                 </div>
-                <p class="blink-text">⚠️ Clique acima para baixar</p>
+                <div class="blink-alert">⚠️ CLIQUE ACIMA PARA BAIXAR</div>
             </article>
 
         </main>
     </div>
 
     <script>
-        // Script para manter o tema se necessário
         function setTheme(themeName) {
             document.body.className = themeName;
             localStorage.setItem('preferred-theme', themeName);
