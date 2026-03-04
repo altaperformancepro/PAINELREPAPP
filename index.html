@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAINEL REP - Alta Performance 2026</title>
+
+    <meta property="og:title" content="PAINEL REP - Alta Performance 2026">
+    <meta property="og:description" content="Acesse Mementos, Listas de Preços, Pedidos e Materiais Estratégicos.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/altaperformancepro/PAINELREPAPP/0c3f613100a448634ad9c5e201e33fed7dd870e1/imagemzap.png">
+    <meta property="og:url" content="https://altaperformancepro.github.io/PAINELREPAPP/">
+    <meta property="og:type" content="website">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,13 +45,12 @@
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            perspective: 1000px; /* Ativa o efeito 3D no corpo */
+            perspective: 1000px;
             padding-bottom: 40px;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
-        /* Efeito Flutuante do Logo */
         .logo-container {
             text-align: center;
             margin-bottom: 10px;
@@ -65,14 +70,12 @@
         .main-title { font-size: 2rem; color: var(--primary-blue); font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
         .sub-title { color: var(--accent-orange); font-weight: 800; letter-spacing: 3px; font-size: 0.85rem; }
 
-        /* Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
 
-        /* O Card com Efeito 3D */
         .card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -135,7 +138,6 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
         }
 
-        /* Downloads Estratégicos Horizontal */
         .card-download-full {
             grid-column: 1 / -1;
             min-height: auto;
@@ -182,7 +184,6 @@
             animation: blinker 1.2s linear infinite; 
         }
 
-        /* Responsividade */
         @media (max-width: 1024px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) { 
             .cards-grid { grid-template-columns: repeat(2, 1fr); } 
